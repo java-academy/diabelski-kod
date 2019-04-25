@@ -1,4 +1,4 @@
-package main.com;
+package com;
 
 /**
  * @author Jakub Czajka
