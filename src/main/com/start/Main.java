@@ -1,4 +1,7 @@
-package com;
+package com.start;
+
+
+
 
 /**
  * @author Kacper Staszek
@@ -6,6 +9,11 @@ package com;
 class Main {
 
   public static void main(String[] args) {
+
+  }
+
+
+  void runMe(){
 
   }
 

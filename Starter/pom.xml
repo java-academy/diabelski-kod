@@ -11,5 +11,13 @@
 
   <artifactId>Starter</artifactId>
 
+  <dependencies>
+    <dependency>
+      <groupId>drusil</groupId>
+      <artifactId>Engine</artifactId>
+      <version>0.1</version>
+    </dependency>
+  </dependencies>
+
 
 </project>
