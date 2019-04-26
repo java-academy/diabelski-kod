@@ -18,24 +18,31 @@ public class ReflectionScanner {
 
   private Set<Method> annotatedMethods;
 
-  private final String packageName;
-
   private final Reflections reflections;
 
-  public ReflectionScanner(String packageName, Reflections reflections) {
-    this.packageName = packageName;
+  public ReflectionScanner(String packageName) {
     this.reflections = new Reflections(packageName, new MethodAnnotationsScanner());
-    collectAnnotatedMethods(this.reflections);
+    collectAnnotatedMethods();
   }
 
   public void runAllMethodsWithAnnotation(){
-
+    executeMethods(5);
   }
 
-  public void runAllMethodsWithAnnotation(int runPriority) {
-
+  public void runAllMethodsWithAnnotationByPriority(int runPriority) {
     executeMethods(runPriority);
+  }
 
+  public void runAllMethodsIncludePrivate(){
+    for (Method method : annotatedMethods) {
+      Class<?> declaringClass = method.getDeclaringClass();
+      method.setAccessible(true);
+      try {
+        method.invoke(declaringClass.getConstructor().newInstance());
+      } catch (IllegalAccessException | InvocationTargetException | InstantiationException | NoSuchMethodException e) {
+        e.printStackTrace();
+      }
+    }
   }
 
   private void executeMethods(int runPriority) {
@@ -49,7 +56,7 @@ public class ReflectionScanner {
     }
   }
 
-  private void collectAnnotatedMethods(Reflections reflections) {
+  private void collectAnnotatedMethods() {
     annotatedMethods = reflections.getMethodsAnnotatedWith(Run.class);
   }
 
