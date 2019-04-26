@@ -8,7 +8,8 @@ import java.lang.annotation.Target;
 /**
  * @author Jakub Czajka
  */
-@Target({ElementType.METHOD,ElementType.FIELD})
+@Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Run {
+  int priority() default 3;
 }

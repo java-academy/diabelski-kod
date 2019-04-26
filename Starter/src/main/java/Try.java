@@ -1,5 +1,3 @@
-package main;
-
 import com.reflectionscanner.ReflectionScanner;
 
 /**
@@ -10,8 +8,8 @@ class Try {
   public static void main(String[] args) {
 
 
-    ReflectionScanner reflectionScanner = new ReflectionScanner();
-    reflectionScanner.runEverythingWithRun(Try.class.getPackageName());
+    ReflectionScanner reflectionScanner = new ReflectionScanner(packageName, reflections);
+    reflectionScanner.runAllMethodsWithAnnotation(Try.class.getPackageName(),2);
 
   }
 }
