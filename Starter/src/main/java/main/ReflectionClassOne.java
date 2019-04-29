@@ -13,7 +13,7 @@ public class ReflectionClassOne {
   }
 
   @Run
-  void privateMethod(){
+  private void privateMethod(){
     System.out.println("Run private");
   }
 

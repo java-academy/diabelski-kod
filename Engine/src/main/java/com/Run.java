@@ -11,5 +11,6 @@ import java.lang.annotation.Target;
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Run {
-  int priority() default 3;
+  Priority priority() default Priority.MEDIUM;
 }
+

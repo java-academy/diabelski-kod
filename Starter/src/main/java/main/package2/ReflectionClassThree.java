@@ -1,5 +1,6 @@
 package main.package2;
 
+import com.Priority;
 import com.Run;
 
 /**
@@ -7,7 +8,7 @@ import com.Run;
  */
 public class ReflectionClassThree {
 
-  @Run(priority = 5)
+  @Run(priority = Priority.HIGH)
   public void tralalala(){
     System.out.println("traraararar");
   }

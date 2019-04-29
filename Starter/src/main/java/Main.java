@@ -1,3 +1,4 @@
+import com.Priority;
 import com.reflectionscanner.ReflectionScanner;
 
 /**
@@ -7,13 +8,13 @@ class Main {
 
   public static void main(String[] args) {
 
-    ReflectionScanner reflectionScanner = new ReflectionScanner(args[0]);
+    ReflectionScanner reflectionScanner = new ReflectionScanner(Main.class.getPackageName());
 
     reflectionScanner.runAllMethodsIncludePrivate();
 
     reflectionScanner.runAllMethodsWithAnnotation();
 
-    reflectionScanner.runAllMethodsWithAnnotationByPriority(3);
+    reflectionScanner.runAllMethodsWithAnnotationByPriority(Priority.MEDIUM);
 
   }
 }

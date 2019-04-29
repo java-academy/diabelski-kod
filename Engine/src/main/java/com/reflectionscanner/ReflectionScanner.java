@@ -1,6 +1,7 @@
 package com.reflectionscanner;
 
 
+import com.Priority;
 import com.Run;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -26,10 +27,10 @@ public class ReflectionScanner {
   }
 
   public void runAllMethodsWithAnnotation(){
-    executeMethods(5);
+    executeMethods(Priority.LOW);
   }
 
-  public void runAllMethodsWithAnnotationByPriority(int runPriority) {
+  public void runAllMethodsWithAnnotationByPriority(Priority runPriority) {
     executeMethods(runPriority);
   }
 
@@ -45,11 +46,10 @@ public class ReflectionScanner {
     }
   }
 
-  private void executeMethods(int runPriority) {
+  private void executeMethods(Priority priority) {
     for (Method method : annotatedMethods) {
-      Class<?> declaringClass = method.getDeclaringClass();
       try {
-        checkPriorityAndRun(runPriority, method, declaringClass);
+        checkPriorityAndRun(priority, method);
       } catch (IllegalAccessException | InvocationTargetException | InstantiationException | NoSuchMethodException e) {
         e.printStackTrace();
       }
@@ -60,13 +60,19 @@ public class ReflectionScanner {
     annotatedMethods = reflections.getMethodsAnnotatedWith(Run.class);
   }
 
-  private void checkPriorityAndRun(int runPriority, Method method, Class<?> declaringClass)
+  private void checkPriorityAndRun(Priority priority, Method method)
       throws IllegalAccessException, InvocationTargetException, InstantiationException, NoSuchMethodException {
+    Class<?> declaringClass = method.getDeclaringClass();
     Run annotation = method.getAnnotation(Run.class);
-    int priority = annotation.priority();
-    if (priority >= runPriority) {
-      method.invoke(declaringClass.getDeclaredConstructor().newInstance());
+    if(methodIsNotPrivate(method.getModifiers())){
+      if (annotation.priority().getPriority() >= priority.getPriority()) {
+        method.invoke(declaringClass.getDeclaredConstructor().newInstance());
+      }
     }
+  }
+
+  private boolean methodIsNotPrivate(int modifiers) {
+    return modifiers!=2;
   }
 
 }
