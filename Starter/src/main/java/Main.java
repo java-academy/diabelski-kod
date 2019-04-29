@@ -1,5 +1,6 @@
-import com.Priority;
+import com.InvokeLevel;
 import com.reflectionscanner.ReflectionScanner;
+import com.reflectionscanner.ReflectionScannerV2;
 
 /**
  * @author Kacper Staszek
@@ -7,14 +8,7 @@ import com.reflectionscanner.ReflectionScanner;
 class Main {
 
   public static void main(String[] args) {
-
-    ReflectionScanner reflectionScanner = new ReflectionScanner(Main.class.getPackageName());
-
-    reflectionScanner.runAllMethodsIncludePrivate();
-
-    reflectionScanner.runAllMethodsWithAnnotation();
-
-    reflectionScanner.runAllMethodsWithAnnotationByPriority(Priority.MEDIUM);
-
+   ReflectionScannerV2 reflectionScannerV2 = new ReflectionScannerV2(Main.class.getPackageName()).setInvokeLevel(InvokeLevel.LOW).setPrivateAccess(true);
+   reflectionScannerV2.run();
   }
 }

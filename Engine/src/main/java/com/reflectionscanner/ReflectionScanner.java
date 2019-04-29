@@ -1,10 +1,11 @@
 package com.reflectionscanner;
 
 
-import com.Priority;
+import com.InvokeLevel;
 import com.Run;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+
 import java.util.Set;
 import org.reflections.Reflections;
 import org.reflections.scanners.MethodAnnotationsScanner;
@@ -27,11 +28,11 @@ public class ReflectionScanner {
   }
 
   public void runAllMethodsWithAnnotation(){
-    executeMethods(Priority.LOW);
+    executeMethods(InvokeLevel.LOW);
   }
 
-  public void runAllMethodsWithAnnotationByPriority(Priority runPriority) {
-    executeMethods(runPriority);
+  public void runAllMethodsWithAnnotationByPriority(InvokeLevel runInvokeLevel) {
+    executeMethods(runInvokeLevel);
   }
 
   public void runAllMethodsIncludePrivate(){
@@ -46,26 +47,25 @@ public class ReflectionScanner {
     }
   }
 
-  private void executeMethods(Priority priority) {
+  private void executeMethods(InvokeLevel invokeLevel) {
     for (Method method : annotatedMethods) {
       try {
-        checkPriorityAndRun(priority, method);
+        checkPriorityAndRun(invokeLevel, method);
       } catch (IllegalAccessException | InvocationTargetException | InstantiationException | NoSuchMethodException e) {
         e.printStackTrace();
       }
     }
   }
-
   private void collectAnnotatedMethods() {
     annotatedMethods = reflections.getMethodsAnnotatedWith(Run.class);
   }
 
-  private void checkPriorityAndRun(Priority priority, Method method)
+  private void checkPriorityAndRun(InvokeLevel invokeLevel, Method method)
       throws IllegalAccessException, InvocationTargetException, InstantiationException, NoSuchMethodException {
     Class<?> declaringClass = method.getDeclaringClass();
     Run annotation = method.getAnnotation(Run.class);
     if(methodIsNotPrivate(method.getModifiers())){
-      if (annotation.priority().getPriority() >= priority.getPriority()) {
+      if (annotation.invokeLevel().getInvokeLevel() >= invokeLevel.getInvokeLevel()) {
         method.invoke(declaringClass.getDeclaredConstructor().newInstance());
       }
     }
@@ -74,6 +74,7 @@ public class ReflectionScanner {
   private boolean methodIsNotPrivate(int modifiers) {
     return modifiers!=2;
   }
+
 
 }
 

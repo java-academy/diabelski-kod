@@ -8,9 +8,8 @@ import java.lang.annotation.Target;
 /**
  * @author Jakub Czajka
  */
-@Target({ElementType.METHOD})
+@Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Run {
-  InvokeLevel invokeLevel() default InvokeLevel.MEDIUM;
+public @interface ExpectedException {
+  Class value();
 }
-

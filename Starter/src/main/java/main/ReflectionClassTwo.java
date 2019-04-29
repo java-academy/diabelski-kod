@@ -17,5 +17,13 @@ public class ReflectionClassTwo {
     System.out.println(this.getClass().getName() + " two");
   }
 
+ /* @Run
+  public void methodThree() {
+    throw  new ArrayIndexOutOfBoundsException();
+    }
+*/
 
-}
+  }
+
+
+
