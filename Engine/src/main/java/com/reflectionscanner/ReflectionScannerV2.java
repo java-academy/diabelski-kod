@@ -27,11 +27,7 @@ public class ReflectionScannerV2 {
     private InvokeLevel invokeLevel;
     private boolean access;
     public ReflectionScannerV2(String packageName, InvokeLevel invokeLevel, boolean access) {
-        ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
-        configurationBuilder.addUrls(ClasspathHelper.forClass(Object.class));
-        configurationBuilder.forPackages(packageName);
-        configurationBuilder.addScanners(new MethodAnnotationsScanner());
-        this.reflections = new Reflections(configurationBuilder);
+        this.reflections = new Reflections(packageName, new MethodAnnotationsScanner());
         this.access = access;
         this.invokeLevel = invokeLevel;
     }
