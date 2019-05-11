@@ -21,13 +21,12 @@ public class ReflectionScannerV2Test {
 
   @BeforeMethod
   public void beforeEachMethod() {
-    reflectionScanner = new ReflectionScannerV2(ReflectionScannerV2TestObject.class.getPackageName());
     ReflectionScannerV2TestObject.testy = new int[6];
   }
 
   @Test
   public void whenInvokeLevelIsLowAndNoPrivateAccessIsSetThenOnlyOneMethodRun() {
-    reflectionScanner.setInvokeLevel(InvokeLevel.LOW).setPrivateAccess(false);
+    reflectionScanner = new ReflectionScannerV2(ReflectionScannerV2TestObject.class.getPackageName(),InvokeLevel.LOW,false);
     reflectionScanner.run();
     int[] methodsRuned = ReflectionScannerV2TestObject.testy;
     int[] methodThatShouldRunned = {1,1,1,0,0,0};
@@ -36,7 +35,7 @@ public class ReflectionScannerV2Test {
 
   @Test
   public void whenInvokeLevelIsMediumAndNoPrivateAccessIsSetThenOnlyOneMethodRun() {
-    reflectionScanner.setInvokeLevel(InvokeLevel.MEDIUM).setPrivateAccess(false);
+    reflectionScanner = new ReflectionScannerV2(ReflectionScannerV2TestObject.class.getPackageName(),InvokeLevel.MEDIUM,false);
     reflectionScanner.run();
     int[] methodsRuned = ReflectionScannerV2TestObject.testy;
     int[] methodThatShouldRunned = {0,1,1,0,0,0};
@@ -44,7 +43,7 @@ public class ReflectionScannerV2Test {
   }
   @Test
   public void whenInvokeLevelIsHightAndNoPrivateAccessIsSetThenOnlyOneMethodRun() {
-    reflectionScanner.setInvokeLevel(InvokeLevel.HIGH).setPrivateAccess(false);
+    reflectionScanner = new ReflectionScannerV2(ReflectionScannerV2TestObject.class.getPackageName(),InvokeLevel.HIGH,false);
     reflectionScanner.run();
     int[] methodsRuned = ReflectionScannerV2TestObject.testy;
     int[] methodThatShouldRunned = {0,0,1,0,0,0};
@@ -53,7 +52,7 @@ public class ReflectionScannerV2Test {
 
   @Test
   public void whenInvokeLevelIsLowAndNoPrivateAccessIsSetOnTrueThenAllMethodRun() {
-    reflectionScanner.setInvokeLevel(InvokeLevel.LOW).setPrivateAccess(true);
+    reflectionScanner = new ReflectionScannerV2(ReflectionScannerV2TestObject.class.getPackageName(),InvokeLevel.LOW,true);
     reflectionScanner.run();
     int[] methodsRuned = ReflectionScannerV2TestObject.testy;
     int[] methodThatShouldRunned = {1,1,1,1,1,1};
@@ -62,7 +61,7 @@ public class ReflectionScannerV2Test {
 
   @Test
   public void whenInvokeLevelIsMediumAndNoPrivateAccessIsSetOnTrueThenAllMethodRun() {
-    reflectionScanner.setInvokeLevel(InvokeLevel.MEDIUM).setPrivateAccess(true);
+    reflectionScanner = new ReflectionScannerV2(ReflectionScannerV2TestObject.class.getPackageName(),InvokeLevel.MEDIUM,true);
     reflectionScanner.run();
     int[] methodsRuned = ReflectionScannerV2TestObject.testy;
     int[] methodThatShouldRunned = {0,1,1,0,1,1};
@@ -71,7 +70,7 @@ public class ReflectionScannerV2Test {
 
   @Test
   public void whenInvokeLevelIsHeightAndNoPrivateAccessIsSetOnTrueThenAllMethodRun() {
-    reflectionScanner.setInvokeLevel(InvokeLevel.HIGH).setPrivateAccess(true);
+    reflectionScanner = new ReflectionScannerV2(ReflectionScannerV2TestObject.class.getPackageName(),InvokeLevel.HIGH,true);
     reflectionScanner.run();
     int[] methodsRuned = ReflectionScannerV2TestObject.testy;
     int[] methodThatShouldRunned = {0,0,1,0,0,1};
