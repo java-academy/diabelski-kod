@@ -1,5 +1,6 @@
 import com.InvokeLevel;
 import com.reflectionscanner.ReflectionScannerV2;
+import main.ReflectionClassOne;
 
 /**
  * @author Kacper Staszek

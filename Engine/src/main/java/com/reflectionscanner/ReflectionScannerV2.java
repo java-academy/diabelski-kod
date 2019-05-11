@@ -1,11 +1,22 @@
 package com.reflectionscanner;
 
-import com.*;
-import org.reflections.*;
-import org.reflections.scanners.*;
+import com.InvokeLevel;
+import com.Run;
+import org.reflections.Reflections;
+import org.reflections.scanners.MethodAnnotationsScanner;
+import org.reflections.util.ClasspathHelper;
+import org.reflections.util.ConfigurationBuilder;
 
-import java.lang.reflect.*;
-import java.util.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author Jakub Czajka
@@ -17,7 +28,11 @@ public class ReflectionScannerV2 {
     private boolean access = false;
 
     public ReflectionScannerV2(String packageName) {
-        this.reflections = new Reflections(packageName, new MethodAnnotationsScanner());
+        ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
+        configurationBuilder.addUrls(ClasspathHelper.forClass(Object.class));
+        configurationBuilder.forPackages(packageName);
+        configurationBuilder.addScanners(new MethodAnnotationsScanner());
+        this.reflections = new Reflections(configurationBuilder);
     }
 
     public ReflectionScannerV2 setInvokeLevel(InvokeLevel invokeLevel) {
@@ -31,23 +46,39 @@ public class ReflectionScannerV2 {
     }
 
     public void run() {
-        Set<Method> annotatedMethods = new HashSet<>(reflections.getMethodsAnnotatedWith(Run.class));
+        HashSet<Method> annotatedMethods = new HashSet<>(reflections.getMethodsAnnotatedWith(Run.class));
         runTests();
         annotatedMethods.removeIf(
-                method -> method.getAnnotation(Run.class).invokeLevel().getInvokeLevel() < invokeLevel
+                method -> method
+                        .getAnnotation(Run.class)
+                        .invokeLevel()
+                        .getInvokeLevel() < invokeLevel
                         .getInvokeLevel());
         if (access) {
-            annotatedMethods.stream().filter(method -> Modifier.isPrivate(method.getModifiers()))
-                    .forEach(method -> method.setAccessible(true));
+            annotatedMethods.stream()
+                    .filter(method -> Modifier
+                            .isPrivate(method.getModifiers()))
+                    .forEach(method -> method
+                            .setAccessible(true));
         } else {
-            annotatedMethods.removeIf(method -> Modifier.isPrivate(method.getModifiers()));
+            annotatedMethods
+                    .removeIf(method -> Modifier
+                            .isPrivate(method.getModifiers()));
         }
         for (Method method : annotatedMethods) {
-            Class<?> declaringClass = method.getDeclaringClass();
+            Class<? extends Object> declaringClass = method.getDeclaringClass();
             try {
-                method.invoke(declaringClass.getDeclaredConstructor().newInstance());
-            } catch (IllegalAccessException | InvocationTargetException | InstantiationException | NoSuchMethodException e) {
+                method.invoke(declaringClass
+                        .getDeclaredConstructor()
+                        .newInstance());
+            } catch (IllegalAccessException e) {
                 e.printStackTrace();
+            } catch (NoSuchMethodException f) {
+                f.printStackTrace();
+            } catch (InstantiationException g) {
+                g.printStackTrace();
+            } catch (InvocationTargetException h) {
+                h.printStackTrace();
             }
         }
     }
