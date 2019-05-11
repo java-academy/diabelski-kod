@@ -9,6 +9,6 @@ import org.reflections.scanners.MethodAnnotationsScanner;
  */
 class Main {
   public static void main(String[] args) {
-    System.out.println("Hello World");
+    System.out.println(args[0]);
   }
 }
