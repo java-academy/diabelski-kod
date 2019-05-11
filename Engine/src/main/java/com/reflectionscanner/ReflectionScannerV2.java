@@ -35,7 +35,6 @@ public class ReflectionScannerV2 {
 
   public void run() {
     Set<Method> annotatedMethods = new HashSet<>(getAnnotatedMethods());
-    runTests();
     createMethodsToRun(annotatedMethods, invokeLevel, access);
     runEveryMethod(annotatedMethods);
   }
@@ -80,7 +79,5 @@ public class ReflectionScannerV2 {
   }
 
 
-  private void runTests() {
-    System.out.println("run");
-  }
+
 }
