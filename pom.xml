@@ -4,18 +4,18 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>drusil</groupId>
-    <artifactId>APP</artifactId>
+    <groupId>ja.workshops</groupId>
+    <artifactId>cc-dojo</artifactId>
+    <version>0.2</version>
     <packaging>pom</packaging>
-    <version>0.1</version>
     <modules>
         <module>Starter</module>
         <module>Engine</module>
     </modules>
 
-    <name>NAME</name>
-    <description>#DESC</description>
-    <url>https://github.com/drusil</url>
+    <name>Clean Code Dojo (cc-dojo)</name>
+    <description>Dojo to realize the basics of clean code. Or, if on demon branch... not just the basics. :-) </description>
+    <url>https://github.com/java-academy</url>
   
     <properties>
              <!-- https://maven.apache.org/general.html#encoding-warning -->
