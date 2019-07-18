@@ -1,4 +1,4 @@
-package com;
+package ja.workshops.cleancodedojo;
 //TODO change name
 public enum InvokeLevel
 {

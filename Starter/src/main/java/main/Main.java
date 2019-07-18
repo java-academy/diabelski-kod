@@ -1,7 +1,7 @@
 package main;
 
-import com.InvokeLevel;
-import com.reflectionscanner.ReflectionScannerV2;
+import ja.workshops.cleancodedojo.InvokeLevel;
+import ja.workshops.cleancodedojo.reflectionscanner.ReflectionScannerV2;
 
 /**
  * @author Kacper Staszek

@@ -1,7 +1,4 @@
-package com.extra_functionality;
-
-import com.InvokeLevel;
-import com.Run;
+package ja.workshops.cleancodedojo.extra_functionality;
 
 /**
  * @author Wojciech Makiela

@@ -1,4 +1,4 @@
-package com.extra_functionality;
+package ja.workshops.cleancodedojo.extra_functionality;
 
 /**
  * @author Wojciech Makiela

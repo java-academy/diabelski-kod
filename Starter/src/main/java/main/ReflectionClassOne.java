@@ -1,6 +1,6 @@
 package main;
 
-import com.Run;
+import ja.workshops.cleancodedojo.Run;
 
 /**
  * @author Kacper Staszek

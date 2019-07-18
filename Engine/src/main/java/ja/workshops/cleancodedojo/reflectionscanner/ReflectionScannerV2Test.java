@@ -1,14 +1,9 @@
-package com.reflectionscanner;
+package ja.workshops.cleancodedojo.reflectionscanner;
 
 import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.internal.junit.ArrayAsserts.assertArrayEquals;
 
-import com.InvokeLevel;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.nio.Buffer;
+import ja.workshops.cleancodedojo.InvokeLevel;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 

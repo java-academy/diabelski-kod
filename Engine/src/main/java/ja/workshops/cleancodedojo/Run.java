@@ -1,4 +1,4 @@
-package com;
+package ja.workshops.cleancodedojo;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

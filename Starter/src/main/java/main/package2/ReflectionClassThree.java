@@ -1,7 +1,7 @@
 package main.package2;
 
-import com.InvokeLevel;
-import com.Run;
+import ja.workshops.cleancodedojo.InvokeLevel;
+import ja.workshops.cleancodedojo.Run;
 
 /**
  * @author Kacper Staszek

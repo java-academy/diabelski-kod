@@ -1,11 +1,7 @@
-package com.reflectionscanner;
+package ja.workshops.cleancodedojo.reflectionscanner;
 
-import com.InvokeLevel;
-import com.Run;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.List;
+import ja.workshops.cleancodedojo.InvokeLevel;
+import ja.workshops.cleancodedojo.Run;
 
 /**
  * @author Jakub Czajka

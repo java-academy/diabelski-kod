@@ -1,22 +1,14 @@
-package com.reflectionscanner;
+package ja.workshops.cleancodedojo.reflectionscanner;
 
-import com.InvokeLevel;
-import com.Run;
+import ja.workshops.cleancodedojo.InvokeLevel;
+import ja.workshops.cleancodedojo.Run;
 import org.reflections.Reflections;
 import org.reflections.scanners.MethodAnnotationsScanner;
-import org.reflections.util.ClasspathHelper;
-import org.reflections.util.ConfigurationBuilder;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * @author Jakub Czajka
